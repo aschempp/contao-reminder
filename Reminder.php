@@ -79,7 +79,7 @@ class Reminder extends System
 				'recipients'	=> implode(', ', $arrRecipients),
 				'data'			=> serialize($arrPost),
 				'start'			=> time(),
-				'stop'			=> strtotime('+' . $arrDelay[0] . ' ' . $arrDelay[1]),
+				'stop'			=> strtotime('+' . $arrDelay['value'] . ' ' . $arrDelay['unit']),
 				'language'		=> $GLOBALS['TL_LANGUAGE'],
 				'mail_template'	=> $arrForm['reminderTemplate'],
 			);
