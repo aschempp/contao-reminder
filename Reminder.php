@@ -48,11 +48,11 @@ class Reminder extends System
 	{
 		$arrFields = deserialize($arrForm['reminderRecipient']);
 		
-		if ($arrForm['reminder'] && $arrForm['reminderTemplate'] > 0 && ((is_array($arrFields) && !empty($arrFields)) || $arrForm['reminderBcc'] != ''))
+		if ($arrForm['reminder'] && $arrForm['reminderTemplate'] > 0 && is_array($arrFields) && !empty($arrFields))
 		{
 			$arrDelay = deserialize($arrForm['reminderDelay']);
-
-			if (!is_array($arrDelay) || $arrDelay[0] < 1 || $arrDelay[1] == '')
+			
+			if (!is_array($arrDelay) || $arrDelay['value'] < 1 || $arrDelay['unit'] == '')
 			{
 				return;
 			}
@@ -60,11 +60,11 @@ class Reminder extends System
 			$arrRecipients = array();
 			$objFields = $this->Database->execute("SELECT * FROM tl_form_field WHERE id IN (" . implode(',', array_map('intval', $arrFields)) . ")");
 			
-			while ($objField->next())
+			while ($objFields->next())
 			{
-				if ($arrPost[$objField->name] != '' && $this->isValidEmailAddress($arrPost[$objField->name]))
+				if ($arrPost[$objFields->name] != '' && $this->isValidEmailAddress($arrPost[$objFields->name]))
 				{
-					$arrRecipients[] = $arrPost[$objField->name];
+					$arrRecipients[] = $arrPost[$objFields->name];
 				}
 			}
 
@@ -123,6 +123,12 @@ class Reminder extends System
 			else
 			{
 				$this->Database->execute("INSERT INTO tl_lock SET name='formreminder', tstamp=$start");
+			}
+		}
+	}
+}
+
+");
 			}
 		}
 	}

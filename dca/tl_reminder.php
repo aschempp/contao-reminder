@@ -58,8 +58,8 @@ $GLOBALS['TL_DCA']['tl_reminder'] = array
 		),
 		'label' => array
 		(
-			'fields'					=> array('mail_template', 'recipients'),
-			'format'					=> '%s <span style="color:#b3b3b3; padding-left:3px;">[%s]</span>',
+			'fields'					=> array('recipients'),
+			'format'					=> '%s',
 			'label_callback'			=> array('tl_reminder', 'addIcon'),
 		),
 		'operations' => array

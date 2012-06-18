@@ -49,7 +49,7 @@ $GLOBALS['TL_DCA']['tl_form']['fields']['reminderDelay'] = array
 (
 	'label'				=> &$GLOBALS['TL_LANG']['tl_form']['reminderDelay'],
 	'inputType'			=> 'timePeriod',
-	'options'			=> array('minutes', 'hours', 'days', 'weeks', 'months', 'years'),
+	'options'			=> array('days', 'weeks', 'months', 'years'),
 	'reference'			=> &$GLOBALS['TL_LANG']['tl_form']['reminderDelay'],
 	'eval'				=> array('mandatory'=>true, 'includeBlankOption'=>true, 'tl_class'=>'clr w50'),
 );
@@ -67,7 +67,7 @@ $GLOBALS['TL_DCA']['tl_form']['fields']['reminderRecipient'] = array
 	'label'				=> &$GLOBALS['TL_LANG']['tl_form']['reminderRecipient'],
 	'inputType'			=> 'select',
 	'options_callback'	=> array('tl_form_reminder', 'getFormFields'),
-	'eval'				=> array('multiple'=>true, 'size'=>3, 'chosen'=>true, 'tl_class'=>'clr w50'),
+	'eval'				=> array('mandatory'=>true, 'multiple'=>true, 'size'=>3, 'chosen'=>true, 'tl_class'=>'clr w50'),
 );
 
 $GLOBALS['TL_DCA']['tl_form']['fields']['reminderCheck'] = array
